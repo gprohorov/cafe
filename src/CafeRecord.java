@@ -8,10 +8,14 @@
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 @Data
 @AllArgsConstructor
+@Getter
+@Setter
 public class CafeRecord {
     private Client client;
     private Item item;

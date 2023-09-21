@@ -57,4 +57,13 @@ public class Item implements IFreshness {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "type=" + type +
+                ", name='" + name + '\'' +
+                ", ingredients=" + ingredients +
+                '}';
+    }
 }

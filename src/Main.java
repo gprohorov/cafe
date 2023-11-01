@@ -19,14 +19,20 @@ import java.util.stream.Collectors;
 
 
 public class Main {
+    public static Connection connection;
+    public static String url = "jdbc:mysql://localhost:3306/cafe";
+    public static String login = "root";
+    public static String pass = "root";
 
+    public static Connection setConnection(String url, String login, String pass) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return DriverManager.getConnection(url,login, pass);
+    }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
-        Connection connection;
-        String url = "jdbc:mysql://localhost:3306/cafe";
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection(url,"root", "root");
+
+        connection = setConnection(url, login, pass);
         System.out.println(connection.isValid(2));
         String query = "SELECT * FROM client";
         Statement statement = connection.createStatement();
@@ -49,9 +55,7 @@ public class Main {
 
 
 
-        while (resultSet.next()) {
 
-        }
         System.out.println(clients);
 
         statement.close();

@@ -38,18 +38,41 @@ public class Main {
             clients.add(new Client(resultSet.getInt(1),
                             resultSet.getString(2),
                             resultSet.getString(3)
+
+
                     )
             );
         }
+
+
+
+
+
 
         while (resultSet.next()) {
 
         }
         System.out.println(clients);
 
-        connection.close();
         statement.close();
         resultSet.close();
+
+        String query2 = "SELECT * FROM cafe.order WHERE id=1";
+         statement = connection.createStatement();
+         resultSet = statement.executeQuery(query2);
+         Order order = new Order();
+        while (resultSet.next()) {
+            order.setId(resultSet.getInt(1));
+            order.setName(resultSet.getString(2));
+            order.setPrice(resultSet.getInt(3));
+            int clientId = resultSet.getInt(4);
+            Client client = clients.stream().filter(cl -> cl.getId() == clientId)
+                    .findAny().get();
+            order.setClient(client);
+        }
+
+        connection.close();
+
 
 // POC   - proof of concept
 

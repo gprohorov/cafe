@@ -48,8 +48,10 @@ public class Main {
         System.out.println(clients);
 
         connection.close();
+        statement.close();
+        resultSet.close();
 
-
+// POC   - proof of concept
 
     }
 
